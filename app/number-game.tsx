@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Volume2 } from "lucide-react";
 import {
   danishPalette,
   danishTokens,
@@ -94,9 +95,19 @@ export default function NumberGame({
   return (
     <main className="flex w-full h-full flex-col items-center gap-8">
       <div className="max-w-4xl flex items-center flex-col gap-4 py-12">
-        <p className="text-6xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          {current}
-        </p>
+        <div className="flex items-center gap-3">
+          <p className="text-6xl font-semibold tracking-tight text-black dark:text-zinc-50">
+            {current}
+          </p>
+          <button
+            type="button"
+            onClick={() => speakDanish(answer)}
+            aria-label="Hør udtale"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-solid border-black/[.08] text-zinc-600 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:text-zinc-300 dark:hover:bg-[#1a1a1a]"
+          >
+            <Volume2 className="h-5 w-5" />
+          </button>
+        </div>
 
         <div className="flex min-h-16 w-full flex-wrap items-center justify-center gap-2 rounded-2xl border border-dashed border-black/[.15] px-4 py-3 dark:border-white/[.2]">
           {tapped.length === 0 && (
@@ -174,23 +185,14 @@ export default function NumberGame({
             </button>
           </>
         ) : (
-          <>
-            <button
-              type="button"
-              onClick={() => speakDanish(answer)}
-              className="flex h-10 flex-1 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            >
-              🔊 Udtale
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={isLoadingNext}
-              className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
-            >
-              {isLoadingNext ? "…" : "Næste"}
-            </button>
-          </>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={isLoadingNext}
+            className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
+          >
+            {isLoadingNext ? "…" : "Næste"}
+          </button>
         )}
       </div>
     </main>
