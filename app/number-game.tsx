@@ -151,7 +151,7 @@ export default function NumberGame({
         </div>
       </div>
 
-      <div className="mt-auto sticky bottom-0 z-10 flex w-full flex-col gap-3 border-t border-black/[.08] bg-zinc-50 px-4 py-3 dark:border-white/[.145] dark:bg-black">
+      <div className="mt-auto sticky bottom-0 z-10 flex w-full flex-col gap-3 border-t border-black/[.08] bg-zinc-50 px-4 py-6 dark:border-white/[.145] dark:bg-black">
         {status !== "pending" && (
           <>
             <SolutionCallout
@@ -162,30 +162,20 @@ export default function NumberGame({
         )}
         <div className="flex w-full gap-3">
           {status === "pending" ? (
-            <>
-              <button
-                type="button"
-                onClick={handleClear}
-                disabled={tapped.length === 0}
-                className="flex h-10 flex-1 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-              >
-                Ryd
-              </button>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={tapped.length === 0}
-                className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
-              >
-                Svar
-              </button>
-            </>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={tapped.length === 0}
+              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
+            >
+              Svar
+            </button>
           ) : (
             <button
               type="button"
               onClick={handleNext}
               disabled={isLoadingNext}
-              className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
+              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
             >
               {isLoadingNext ? "…" : "Næste"}
             </button>
@@ -206,7 +196,7 @@ const SolutionCallout = ({
   correctAnswer,
 }: SolutionCalloutProps) => {
   return (
-    <div>
+    <div className="max-w-2xl text-center mx-auto">
       <p
         className={clsx(
           "text-lg font-medium",
