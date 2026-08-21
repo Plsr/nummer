@@ -8,6 +8,7 @@ import {
   TOKEN_GROUPS,
 } from "@/lib/danish-numbers";
 import { candidateNumbers, requireMode } from "@/lib/modes";
+import clsx from "clsx";
 
 function speakDanish(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -148,53 +149,73 @@ export default function NumberGame({
             </div>
           ))}
         </div>
-
-        {status !== "pending" && (
-          <p
-            className={
-              status === "correct"
-                ? "text-lg font-medium text-green-600 dark:text-green-400"
-                : "text-lg font-medium text-red-600 dark:text-red-400"
-            }
-          >
-            {status === "correct"
-              ? "Rigtigt!"
-              : `Forkert. Svaret er "${answer}".`}
-          </p>
-        )}
       </div>
 
-      <div className="mt-auto sticky bottom-0 z-10 flex w-full gap-3 border-t border-black/[.08] bg-zinc-50 px-4 py-3 dark:border-white/[.145] dark:bg-black">
-        {status === "pending" ? (
+      <div className="mt-auto sticky bottom-0 z-10 flex w-full flex-col gap-3 border-t border-black/[.08] bg-zinc-50 px-4 py-3 dark:border-white/[.145] dark:bg-black">
+        {status !== "pending" && (
           <>
-            <button
-              type="button"
-              onClick={handleClear}
-              disabled={tapped.length === 0}
-              className="flex h-10 flex-1 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            >
-              Ryd
-            </button>
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={tapped.length === 0}
-              className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
-            >
-              Svar
-            </button>
+            <SolutionCallout
+              isCorrect={status === "correct"}
+              correctAnswer={answer}
+            />
           </>
-        ) : (
-          <button
-            type="button"
-            onClick={handleNext}
-            disabled={isLoadingNext}
-            className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
-          >
-            {isLoadingNext ? "…" : "Næste"}
-          </button>
         )}
+        <div className="flex w-full gap-3">
+          {status === "pending" ? (
+            <>
+              <button
+                type="button"
+                onClick={handleClear}
+                disabled={tapped.length === 0}
+                className="flex h-10 flex-1 items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
+              >
+                Ryd
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={tapped.length === 0}
+                className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
+              >
+                Svar
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={isLoadingNext}
+              className="flex h-10 flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
+            >
+              {isLoadingNext ? "…" : "Næste"}
+            </button>
+          )}
+        </div>
       </div>
     </main>
   );
 }
+
+type SolutionCalloutProps = {
+  isCorrect: boolean;
+  correctAnswer?: string;
+};
+
+const SolutionCallout = ({
+  isCorrect,
+  correctAnswer,
+}: SolutionCalloutProps) => {
+  return (
+    <div>
+      <p
+        className={clsx(
+          "text-lg font-medium",
+          isCorrect && "text-green-600 dark:text-green-400",
+          !isCorrect && "text-red-600 dark:text-red-400",
+        )}
+      >
+        {isCorrect ? "Rigtigt!" : `Forkert. Svaret er "${correctAnswer}".`}
+      </p>
+    </div>
+  );
+};
