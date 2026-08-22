@@ -9,6 +9,7 @@ import {
 } from "@/lib/danish-numbers";
 import { candidateNumbers, requireMode } from "@/lib/modes";
 import clsx from "clsx";
+import { PrimaryButton } from "@/components/Button";
 
 function speakDanish(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
@@ -18,16 +19,16 @@ function speakDanish(word: string) {
 
 function tileClassName(token: string) {
   if (token === "og") {
-    return "rounded-2xl border border-solid border-amber-400/70 bg-amber-50 px-4 py-3 text-base font-medium text-amber-900 transition-colors hover:border-amber-400 hover:bg-amber-100 disabled:opacity-40 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-300 dark:hover:bg-amber-400/20";
+    return "rounded-lg border border-solid border-amber-400/70 bg-amber-50 px-4 py-3 text-base font-medium text-amber-900 transition-colors hover:border-amber-400 hover:bg-amber-100 disabled:opacity-40 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-300 dark:hover:bg-amber-400/20";
   }
-  return "rounded-2xl border border-solid border-black/[.08] px-4 py-3 text-base font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]";
+  return "rounded-lg border border-solid border-black/[.08] px-4 py-3 text-base font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]";
 }
 
 function chipClassName(token: string) {
   if (token === "og") {
-    return "rounded-full bg-amber-500 px-4 py-2 text-base font-medium text-white disabled:opacity-70 dark:bg-amber-500/90";
+    return "rounded bg-amber-500 px-4 py-2 text-base font-medium text-white disabled:opacity-70 dark:bg-amber-500/90";
   }
-  return "rounded-full bg-foreground px-4 py-2 text-base font-medium text-background disabled:opacity-70";
+  return "rounded bg-foreground px-4 py-2 text-base font-medium text-background disabled:opacity-70";
 }
 
 export default function NumberGame({
@@ -68,11 +69,6 @@ export default function NumberGame({
   function handleRemove(index: number) {
     if (status !== "pending") return;
     setTapped((prev) => prev.filter((_, i) => i !== index));
-  }
-
-  function handleClear() {
-    if (status !== "pending") return;
-    setTapped([]);
   }
 
   function handleSubmit() {
@@ -160,24 +156,18 @@ export default function NumberGame({
             />
           </>
         )}
-        <div className="flex w-full gap-3">
+        <div className="flex w-full items-center justify-center gap-3">
           {status === "pending" ? (
             <button
-              type="button"
               onClick={handleSubmit}
               disabled={tapped.length === 0}
-              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
+              className="group"
             >
-              Svar
+              <PrimaryButton>Svar</PrimaryButton>
             </button>
           ) : (
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={isLoadingNext}
-              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
-            >
-              {isLoadingNext ? "…" : "Næste"}
+            <button onClick={handleNext} disabled={isLoadingNext}>
+              <PrimaryButton>{isLoadingNext ? "…" : "Næste"}</PrimaryButton>
             </button>
           )}
         </div>
