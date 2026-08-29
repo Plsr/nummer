@@ -13,7 +13,7 @@ type ButtonProps = {
  *   </button>
  *
  * The wrapper's `disabled`/`:active` state drives styling via `in-disabled:`
- * and `group-active:` — see /docs/buttons.md for the full rationale.
+ * and `group-active:`.
  *
  * Visual language: a thick, uniform ink border all the way around, a chunky
  * bottom lip in the same color (border-b-4 vs border-2 everywhere else) plus
