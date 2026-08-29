@@ -25,7 +25,7 @@ type ButtonProps = {
 
 export function PrimaryButton(props: ButtonProps) {
   return (
-    <div className="flex bg-blue-500 rounded-lg transition-all group-active:translate-y-[6px] group-active:border-b-2 border-2 border-b-4 border-blue-700 group-active:[box-shadow:0_0px_0_0_#1d4ed8] [box-shadow:0_4px_0_0_#1d4ed8] h-10 w-sm mx-auto flex-1 items-center justify-center px-4 text-sm font-bold uppercase tracking-wide text-background hover:bg-blue-400 in-disabled:opacity-40">
+    <div className="flex bg-blue-600 rounded-lg transition-all group-active:translate-y-[6px] group-active:border-b-2 border-2 border-b-4 border-blue-700 group-active:[box-shadow:0_0px_0_0_#1d4ed8] [box-shadow:0_4px_0_0_#1d4ed8] h-10 w-sm mx-auto flex-1 items-center justify-center px-4 text-sm font-bold uppercase tracking-wide text-white hover:bg-blue-700 in-disabled:opacity-40">
       {props.children}
     </div>
   );
@@ -52,7 +52,7 @@ export function ConnectorTileButton(props: ButtonProps) {
 /** A tapped token in the constructed-answer tray. Tapping again removes it. */
 export function ChipButton(props: ButtonProps) {
   return (
-    <div className="flex items-center rounded-lg bg-zinc-900 border-2 border-b-4 border-zinc-700 [box-shadow:0_4px_0_0_#3f3f46] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#3f3f46] px-4 py-2 text-base font-bold text-white in-disabled:opacity-70 dark:bg-zinc-100 dark:border-zinc-300 dark:text-zinc-900 dark:[box-shadow:0_4px_0_0_#d4d4d8] dark:group-active:[box-shadow:0_0px_0_0_#d4d4d8]">
+    <div className="flex items-center rounded-lg bg-zinc-300 border-2 border-b-4 border-zinc-500 [box-shadow:0_4px_0_0_#71717a] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#71717a] px-4 py-2 text-base font-bold text-zinc-900 in-disabled:opacity-70 dark:bg-zinc-600 dark:border-zinc-800 dark:text-white dark:[box-shadow:0_4px_0_0_#27272a] dark:group-active:[box-shadow:0_0px_0_0_#27272a]">
       {props.children}
     </div>
   );
@@ -61,7 +61,7 @@ export function ChipButton(props: ButtonProps) {
 /** The "og" chip in the constructed-answer tray — amber accent. */
 export function ConnectorChipButton(props: ButtonProps) {
   return (
-    <div className="flex items-center rounded-lg bg-amber-500 border-2 border-b-4 border-amber-700 [box-shadow:0_4px_0_0_#b45309] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#b45309] px-4 py-2 text-base font-bold text-white in-disabled:opacity-70 dark:bg-amber-500/90 dark:border-amber-700">
+    <div className="flex items-center rounded-lg bg-amber-500 border-2 border-b-4 border-amber-700 [box-shadow:0_4px_0_0_#b45309] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#b45309] px-4 py-2 text-base font-bold text-amber-950 in-disabled:opacity-70 dark:bg-amber-500/90 dark:border-amber-700">
       {props.children}
     </div>
   );

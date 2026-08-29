@@ -14,15 +14,16 @@ export default async function ModeLayout({
 
   return (
     <div className="flex w-full flex-1">
-      <aside className="w-44  gap-1 border-r border-black/[.08] px-3 py-8 dark:border-white/[.145]">
+      <aside className="flex w-44 flex-col gap-1 border-r-2 border-zinc-300 bg-zinc-50 px-3 py-8 dark:border-zinc-700 dark:bg-black">
+        <h2 className="text-lg font-bold">Modes</h2>
         {MODES.map((m) => (
           <Link
             key={m.id}
             href={`/mode/${m.id}`}
             className={
               m.id === modeId
-                ? "flex rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background"
-                : "flex rounded-full px-4 py-2 text-sm font-medium text-black/70 transition-colors hover:bg-black/[.04] dark:text-white/70 dark:hover:bg-[#1a1a1a]"
+                ? "flex rounded-lg border-2 border-zinc-500 bg-zinc-300 px-4 py-2 text-sm font-bold text-zinc-900 dark:border-zinc-800 dark:bg-zinc-600 dark:text-white"
+                : "flex rounded-lg px-4 py-2 text-sm font-bold text-zinc-600 transition-colors hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
             }
           >
             {m.label}

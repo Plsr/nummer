@@ -103,7 +103,7 @@ export default function NumberGame({
 
         <div className="flex min-h-16 w-full flex-wrap items-center justify-center gap-2 rounded-2xl border border-dashed border-black/[.15] px-4 py-3 dark:border-white/[.2]">
           {tapped.length === 0 && (
-            <span className="text-sm text-zinc-400 dark:text-zinc-600">
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">
               Tryk på ordene herunder for at bygge svaret
             </span>
           )}
@@ -197,7 +197,7 @@ const SolutionCallout = ({
       <p
         className={clsx(
           "text-lg font-medium",
-          isCorrect && "text-green-600 dark:text-green-400",
+          isCorrect && "text-green-700 dark:text-green-400",
           !isCorrect && "text-red-600 dark:text-red-400",
         )}
       >
