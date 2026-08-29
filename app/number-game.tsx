@@ -9,25 +9,19 @@ import {
 } from "@/lib/danish-numbers";
 import { candidateNumbers, requireMode } from "@/lib/modes";
 import clsx from "clsx";
+import {
+  ChipButton,
+  ConnectorChipButton,
+  ConnectorTileButton,
+  IconButton,
+  PrimaryButton,
+  TileButton,
+} from "@/components/Button";
 
 function speakDanish(word: string) {
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.lang = "da-DK";
   window.speechSynthesis.speak(utterance);
-}
-
-function tileClassName(token: string) {
-  if (token === "og") {
-    return "rounded-2xl border border-solid border-amber-400/70 bg-amber-50 px-4 py-3 text-base font-medium text-amber-900 transition-colors hover:border-amber-400 hover:bg-amber-100 disabled:opacity-40 dark:border-amber-400/40 dark:bg-amber-400/10 dark:text-amber-300 dark:hover:bg-amber-400/20";
-  }
-  return "rounded-2xl border border-solid border-black/[.08] px-4 py-3 text-base font-medium transition-colors hover:border-transparent hover:bg-black/[.04] disabled:opacity-40 dark:border-white/[.145] dark:hover:bg-[#1a1a1a]";
-}
-
-function chipClassName(token: string) {
-  if (token === "og") {
-    return "rounded-full bg-amber-500 px-4 py-2 text-base font-medium text-white disabled:opacity-70 dark:bg-amber-500/90";
-  }
-  return "rounded-full bg-foreground px-4 py-2 text-base font-medium text-background disabled:opacity-70";
 }
 
 export default function NumberGame({
@@ -70,11 +64,6 @@ export default function NumberGame({
     setTapped((prev) => prev.filter((_, i) => i !== index));
   }
 
-  function handleClear() {
-    if (status !== "pending") return;
-    setTapped([]);
-  }
-
   function handleSubmit() {
     if (status !== "pending" || tapped.length === 0) return;
     setStatus(constructed === answer ? "correct" : "incorrect");
@@ -104,15 +93,17 @@ export default function NumberGame({
             type="button"
             onClick={() => speakDanish(answer)}
             aria-label="Hør udtale"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-solid border-black/[.08] text-zinc-600 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:text-zinc-300 dark:hover:bg-[#1a1a1a]"
+            className="group"
           >
-            <Volume2 className="h-5 w-5" />
+            <IconButton>
+              <Volume2 className="h-5 w-5" />
+            </IconButton>
           </button>
         </div>
 
         <div className="flex min-h-16 w-full flex-wrap items-center justify-center gap-2 rounded-2xl border border-dashed border-black/[.15] px-4 py-3 dark:border-white/[.2]">
           {tapped.length === 0 && (
-            <span className="text-sm text-zinc-400 dark:text-zinc-600">
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">
               Tryk på ordene herunder for at bygge svaret
             </span>
           )}
@@ -122,9 +113,13 @@ export default function NumberGame({
               type="button"
               onClick={() => handleRemove(i)}
               disabled={status !== "pending"}
-              className={chipClassName(token)}
+              className="group"
             >
-              {token}
+              {token === "og" ? (
+                <ConnectorChipButton>{token}</ConnectorChipButton>
+              ) : (
+                <ChipButton>{token}</ChipButton>
+              )}
             </button>
           ))}
         </div>
@@ -141,9 +136,13 @@ export default function NumberGame({
                   type="button"
                   onClick={() => handleTap(token)}
                   disabled={status !== "pending"}
-                  className={tileClassName(token)}
+                  className="group"
                 >
-                  {token}
+                  {token === "og" ? (
+                    <ConnectorTileButton>{token}</ConnectorTileButton>
+                  ) : (
+                    <TileButton>{token}</TileButton>
+                  )}
                 </button>
               ))}
             </div>
@@ -160,24 +159,22 @@ export default function NumberGame({
             />
           </>
         )}
-        <div className="flex w-full gap-3">
+        <div className="flex w-full items-center justify-center gap-3">
           {status === "pending" ? (
             <button
-              type="button"
               onClick={handleSubmit}
               disabled={tapped.length === 0}
-              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-40 dark:hover:bg-[#ccc]"
+              className="group"
             >
-              Svar
+              <PrimaryButton>Svar</PrimaryButton>
             </button>
           ) : (
             <button
-              type="button"
               onClick={handleNext}
               disabled={isLoadingNext}
-              className="flex h-10 max-w-md mx-auto flex-1 items-center justify-center rounded-full bg-foreground px-4 text-sm font-medium text-background transition-colors hover:bg-[#383838] disabled:opacity-60 dark:hover:bg-[#ccc]"
+              className="group"
             >
-              {isLoadingNext ? "…" : "Næste"}
+              <PrimaryButton>{isLoadingNext ? "…" : "Næste"}</PrimaryButton>
             </button>
           )}
         </div>
@@ -200,7 +197,7 @@ const SolutionCallout = ({
       <p
         className={clsx(
           "text-lg font-medium",
-          isCorrect && "text-green-600 dark:text-green-400",
+          isCorrect && "text-green-700 dark:text-green-400",
           !isCorrect && "text-red-600 dark:text-red-400",
         )}
       >
