@@ -162,6 +162,7 @@ export default function NumberGame({
         <div className="flex w-full items-center justify-center gap-3">
           {status === "pending" ? (
             <button
+              type="button"
               onClick={handleSubmit}
               disabled={tapped.length === 0}
               className="group"
@@ -170,6 +171,7 @@ export default function NumberGame({
             </button>
           ) : (
             <button
+              type="button"
               onClick={handleNext}
               disabled={isLoadingNext}
               className="group"
