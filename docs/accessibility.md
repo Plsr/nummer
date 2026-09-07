@@ -59,6 +59,16 @@ least once (2026-08-29 pass). Current pairings, all ≥4.5:1 (or ≥3:1 for
 | "Rigtigt!" | `green-700` on white (5.0:1) | `green-400` on near-black (11.4:1) |
 | "Forkert. Svaret er…" | `red-600` on white (4.8:1) | `red-400` on near-black (7.2:1) |
 
+Non-text control boundaries (border against its own background), which need
+only 3:1:
+
+| Component | Light mode border | Dark mode border |
+|---|---|---|
+| `TileButton` / `IconButton` | `zinc-500` on white (4.8:1) | `zinc-700` on `zinc-900` |
+| `ConnectorTileButton` | `amber-600` on `amber-50` (3.1:1) | `amber-600` on `amber-400/10` |
+| `ChipButton` | `zinc-500` on `zinc-300` | `zinc-800` on `zinc-600` |
+| `ConnectorChipButton` | `amber-700` on `amber-500` | `amber-700` on `amber-500/90` |
+
 If you change any of these fills or text colors, recompute the ratio and
 update this table — it's the thing that keeps the next person from
 reintroducing a fix that's already been made once.
@@ -89,14 +99,19 @@ shipped failures:
   the numbers-in-words being tested) is Danish, not English. A screen reader
   following `lang="en"` will apply English pronunciation rules to Danish
   text. Fixed to `lang="da"`.
+- **`TileButton`/`IconButton` border**: `zinc-300` against white computed to
+  **1.5:1** (fails the 3:1 boundary requirement). `ConnectorTileButton`'s
+  `amber-400` against `amber-50` was worse: **1.6:1**. Fixed to `zinc-500`
+  (4.8:1) and `amber-600` (3.1:1) respectively.
 
 ## Beyond color: other things to keep true
 
 - **Use real `<button>`/`<a>` elements for interactive things**, never a
   `<div onClick>`. This is why every button in `components/Button.tsx` is a
-  presentational shell wrapped by a native element — see `docs/buttons.md`.
-  Native elements give you keyboard activation (Enter/Space), the correct
-  accessibility-tree role, and focus handling for free.
+  presentational shell wrapped by a native element — see the usage example
+  in that file's top comment. Native elements give you keyboard activation
+  (Enter/Space), the correct accessibility-tree role, and focus handling for
+  free.
 - **Don't remove the default focus outline.** Nothing in this codebase
   currently touches `outline`/`:focus` — keep it that way unless you're
   replacing it with an equally visible custom focus style.

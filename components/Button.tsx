@@ -25,7 +25,7 @@ type ButtonProps = {
 
 export function PrimaryButton(props: ButtonProps) {
   return (
-    <div className="flex bg-blue-600 rounded-lg transition-all group-active:translate-y-[6px] group-active:border-b-2 border-2 border-b-4 border-blue-700 group-active:[box-shadow:0_0px_0_0_#1d4ed8] [box-shadow:0_4px_0_0_#1d4ed8] h-10 w-sm mx-auto flex-1 items-center justify-center px-4 text-sm font-bold uppercase tracking-wide text-white hover:bg-blue-700 in-disabled:opacity-40">
+    <div className="flex bg-blue-600 rounded-lg transition-all group-active:translate-y-[6px] group-active:border-b-2 border-2 border-b-4 border-blue-700 group-active:[box-shadow:0_0px_0_0_#1d4ed8] [box-shadow:0_4px_0_0_#1d4ed8] h-10 max-w-sm w-full mx-auto flex-1 items-center justify-center px-4 text-sm font-bold uppercase tracking-wide text-white hover:bg-blue-700 in-disabled:opacity-40">
       {props.children}
     </div>
   );
@@ -34,7 +34,7 @@ export function PrimaryButton(props: ButtonProps) {
 /** Neutral word-tile in the palette (e.g. "tre", "tyve"). */
 export function TileButton(props: ButtonProps) {
   return (
-    <div className="flex items-center justify-center rounded-lg bg-white border-2 border-b-4 border-zinc-300 [box-shadow:0_4px_0_0_#d4d4d8] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#d4d4d8] px-4 py-3 text-base font-bold text-zinc-900 hover:bg-zinc-50 in-disabled:opacity-40 dark:bg-zinc-900 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-800 dark:[box-shadow:0_4px_0_0_#3f3f46] dark:group-active:[box-shadow:0_0px_0_0_#3f3f46]">
+    <div className="flex items-center justify-center rounded-lg bg-white border-2 border-b-4 border-zinc-500 [box-shadow:0_4px_0_0_#71717a] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#71717a] px-4 py-3 text-base font-bold text-zinc-900 hover:bg-zinc-50 in-disabled:opacity-40 dark:bg-zinc-900 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-800 dark:[box-shadow:0_4px_0_0_#3f3f46] dark:group-active:[box-shadow:0_0px_0_0_#3f3f46]">
       {props.children}
     </div>
   );
@@ -43,7 +43,7 @@ export function TileButton(props: ButtonProps) {
 /** The "og" (connector) word-tile — same shape as TileButton, amber accent. */
 export function ConnectorTileButton(props: ButtonProps) {
   return (
-    <div className="flex items-center justify-center rounded-lg bg-amber-50 border-2 border-b-4 border-amber-400 [box-shadow:0_4px_0_0_#fbbf24] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#fbbf24] px-4 py-3 text-base font-bold text-amber-900 hover:bg-amber-100 in-disabled:opacity-40 dark:bg-amber-400/10 dark:border-amber-600 dark:text-amber-300 dark:hover:bg-amber-400/20 dark:[box-shadow:0_4px_0_0_#d97706] dark:group-active:[box-shadow:0_0px_0_0_#d97706]">
+    <div className="flex items-center justify-center rounded-lg bg-amber-50 border-2 border-b-4 border-amber-600 [box-shadow:0_4px_0_0_#d97706] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#d97706] px-4 py-3 text-base font-bold text-amber-900 hover:bg-amber-100 in-disabled:opacity-40 dark:bg-amber-400/10 dark:border-amber-600 dark:text-amber-300 dark:hover:bg-amber-400/20 dark:[box-shadow:0_4px_0_0_#d97706] dark:group-active:[box-shadow:0_0px_0_0_#d97706]">
       {props.children}
     </div>
   );
@@ -70,7 +70,7 @@ export function ConnectorChipButton(props: ButtonProps) {
 /** Small circular icon button (e.g. the pronunciation control). */
 export function IconButton(props: ButtonProps) {
   return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white border-2 border-b-4 border-zinc-300 [box-shadow:0_4px_0_0_#d4d4d8] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#d4d4d8] text-zinc-600 hover:text-zinc-900 in-disabled:opacity-40 dark:bg-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-50 dark:[box-shadow:0_4px_0_0_#3f3f46] dark:group-active:[box-shadow:0_0px_0_0_#3f3f46]">
+    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white border-2 border-b-4 border-zinc-500 [box-shadow:0_4px_0_0_#71717a] transition-all group-active:translate-y-[6px] group-active:border-b-2 group-active:[box-shadow:0_0px_0_0_#71717a] text-zinc-600 hover:text-zinc-900 in-disabled:opacity-40 dark:bg-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-50 dark:[box-shadow:0_4px_0_0_#3f3f46] dark:group-active:[box-shadow:0_0px_0_0_#3f3f46]">
       {props.children}
     </div>
   );
