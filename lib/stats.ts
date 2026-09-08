@@ -4,6 +4,12 @@ export type Stats = { correct: number; wrong: number };
 
 const EMPTY_STATS: Stats = { correct: 0, wrong: 0 };
 
+function toCount(value: unknown): number {
+  return typeof value === "number" && Number.isInteger(value) && value >= 0
+    ? value
+    : 0;
+}
+
 export function getStats(): Stats {
   if (typeof window === "undefined") return EMPTY_STATS;
   try {
@@ -11,8 +17,8 @@ export function getStats(): Stats {
     if (!raw) return EMPTY_STATS;
     const parsed = JSON.parse(raw);
     return {
-      correct: Number(parsed.correct) || 0,
-      wrong: Number(parsed.wrong) || 0,
+      correct: toCount(parsed.correct),
+      wrong: toCount(parsed.wrong),
     };
   } catch {
     return EMPTY_STATS;

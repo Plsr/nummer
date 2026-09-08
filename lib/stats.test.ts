@@ -37,4 +37,18 @@ describe("stats", () => {
     window.localStorage.setItem("nummer:stats", "not json");
     expect(getStats()).toEqual({ correct: 0, wrong: 0 });
   });
+
+  test("resets invalid counter values to zero", () => {
+    window.localStorage.setItem(
+      "nummer:stats",
+      JSON.stringify({ correct: -5, wrong: 1.5 }),
+    );
+    expect(getStats()).toEqual({ correct: 0, wrong: 0 });
+
+    window.localStorage.setItem(
+      "nummer:stats",
+      JSON.stringify({ correct: Infinity, wrong: "3" }),
+    );
+    expect(getStats()).toEqual({ correct: 0, wrong: 0 });
+  });
 });
