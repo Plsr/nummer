@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { ChartColumn, X } from "lucide-react";
 import { getStats, type Stats } from "@/lib/stats";
-import { IconButton } from "@/components/Button";
 
 /** Sidebar entry that opens a modal with lifetime right/wrong answer stats. */
 export function StatsModal() {
@@ -35,7 +34,7 @@ export function StatsModal() {
         onClick={(e) => {
           if (e.target === dialogRef.current) dialogRef.current?.close();
         }}
-        className="rounded-2xl border-2 border-b-4 border-zinc-500 bg-white p-6 text-zinc-900 backdrop:bg-black/50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+        className="m-auto rounded-2xl border-2 border-b-4 border-zinc-500 bg-white p-6 text-zinc-900 backdrop:bg-black/50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
       >
         <div className="flex w-72 flex-col gap-4">
           <div className="flex items-center justify-between">
@@ -46,11 +45,9 @@ export function StatsModal() {
               type="button"
               onClick={() => dialogRef.current?.close()}
               aria-label="Luk"
-              className="group"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
             >
-              <IconButton>
-                <X className="h-4 w-4" />
-              </IconButton>
+              <X className="h-4 w-4" />
             </button>
           </div>
 
