@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMode, MODES } from "@/lib/modes";
+import { StatsModal } from "@/components/StatsModal";
 
 export default async function ModeLayout({
   children,
@@ -29,6 +30,7 @@ export default async function ModeLayout({
             {m.label}
           </Link>
         ))}
+        <StatsModal />
       </aside>
 
       <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
