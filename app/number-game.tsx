@@ -8,6 +8,7 @@ import {
   TOKEN_GROUPS,
 } from "@/lib/danish-numbers";
 import { candidateNumbers, requireMode } from "@/lib/modes";
+import { recordAnswer } from "@/lib/stats";
 import clsx from "clsx";
 import {
   ChipButton,
@@ -66,7 +67,9 @@ export default function NumberGame({
 
   function handleSubmit() {
     if (status !== "pending" || tapped.length === 0) return;
-    setStatus(constructed === answer ? "correct" : "incorrect");
+    const isCorrect = constructed === answer;
+    setStatus(isCorrect ? "correct" : "incorrect");
+    recordAnswer(isCorrect);
   }
 
   async function handleNext() {
