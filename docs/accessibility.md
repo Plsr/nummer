@@ -58,6 +58,8 @@ least once (2026-08-29 pass). Current pairings, all ≥4.5:1 (or ≥3:1 for
 | "Tryk på ordene…" hint | `zinc-500` on white (4.8:1) | `zinc-400` on near-black (7.7:1) |
 | "Rigtigt!" | `green-700` on white (5.0:1) | `green-400` on near-black (11.4:1) |
 | "Forkert. Svaret er…" | `red-600` on white (4.8:1) | `red-400` on near-black (7.2:1) |
+| `StatsModal` stat labels ("Rigtige"/"Forkerte") | `zinc-600` on `zinc-100` (7.1:1) | `zinc-400` on `zinc-800` (5.8:1) |
+| `StatsModal` stat counts | `green-700`/`red-600` on `zinc-100` (~4.9:1) | `green-400`/`red-400` on `zinc-800` (~9:1) |
 
 Non-text control boundaries (border against its own background), which need
 only 3:1:

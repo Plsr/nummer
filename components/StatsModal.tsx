@@ -31,6 +31,7 @@ export function StatsModal() {
 
       <dialog
         ref={dialogRef}
+        aria-labelledby="stats-modal-title"
         onClick={(e) => {
           if (e.target === dialogRef.current) dialogRef.current?.close();
         }}
@@ -38,7 +39,9 @@ export function StatsModal() {
       >
         <div className="flex w-72 flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold">Statistik</h2>
+            <h2 id="stats-modal-title" className="text-lg font-bold">
+              Statistik
+            </h2>
             <button
               type="button"
               onClick={() => dialogRef.current?.close()}
@@ -53,7 +56,7 @@ export function StatsModal() {
 
           <dl className="grid grid-cols-2 gap-4 text-center">
             <div className="flex flex-col gap-1 rounded-lg bg-zinc-100 py-3 dark:bg-zinc-800">
-              <dt className="text-xs font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <dt className="text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
                 Rigtige
               </dt>
               <dd className="text-2xl font-semibold text-green-700 dark:text-green-400">
@@ -61,7 +64,7 @@ export function StatsModal() {
               </dd>
             </div>
             <div className="flex flex-col gap-1 rounded-lg bg-zinc-100 py-3 dark:bg-zinc-800">
-              <dt className="text-xs font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <dt className="text-xs font-bold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
                 Forkerte
               </dt>
               <dd className="text-2xl font-semibold text-red-600 dark:text-red-400">
